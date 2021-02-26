@@ -31,7 +31,7 @@ public class HelloWorld implements Drawing {
 		view.setFont(font);
 		view.setTextAlign(TextAlignment.CENTER);
 		view.setFill(Color.hsb(time * 23, 0.8, 1));
-		view.fillText("Grafikaaaaaa!", Vector.ZERO);
+		view.fillText("Grafikaaaaaa moj dobar drugar!", Vector.ZERO);
 	}
 	
 	
