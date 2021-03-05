@@ -38,5 +38,5 @@ public class HelloWorld implements Drawing {
 	public static void main(String[] args) {
 		DrawingApplication.launch(720, 720);
 	}
-	
+		
 }
