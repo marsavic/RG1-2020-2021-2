@@ -8,18 +8,15 @@ import javafx.scene.paint.Color;
 import topic2_image_processing.filters.BinaryFilter;
 
 /**
- * Menja piksele prve slike koji imaju hue koji je blizak zadatom pikselu, sa pikselima iz druge slike.
- * Ostale piksele ostavlja u originalnoj boji. 
+ * Stavlja drugu zadatu sliku preko prve, tako da je neprovidnost druge slike broj zadat u parametru konstruktora. 
  */
-public class ChromaKey extends BinaryFilter {
-	final double hue;            // Koji hue menjamo
-	final double delta = 20;     // Koliko odstupanje dozvoljavamo
+public class Overlap extends BinaryFilter {
+	double opacity;
+	
 
-
-	public ChromaKey(double hue) {
-		this.hue = hue;
+	public Overlap(double opacity) {
+		this.opacity = opacity;
 	}
-
 
 
 	@Override
@@ -36,18 +33,19 @@ public class ChromaKey extends BinaryFilter {
 		PixelReader pr1 = input1.getPixelReader();
 		PixelReader pr2 = input2.getPixelReader();
 		PixelWriter pw = output.getPixelWriter();
-
+		
 		for (int y = 0; y < h; y++) {
 			for (int x = 0; x < w; x++) {
 				Color inputColor1 = pr1.getColor(x, y);
 				Color inputColor2 = pr2.getColor(x, y);
-
-				double dHue = Math.abs(inputColor1.getHue() - hue);
-				if (dHue > 180) {
-					dHue = 360 - dHue;
-				}
 				
-				Color outputColor = dHue < delta ? inputColor2 : inputColor1;
+				Color outputColor = new Color(
+						(1 - opacity) * inputColor1.getRed()     + opacity * inputColor2.getRed()    ,
+						(1 - opacity) * inputColor1.getGreen()   + opacity * inputColor2.getGreen()  ,
+						(1 - opacity) * inputColor1.getBlue()    + opacity * inputColor2.getBlue()   ,
+						1
+				);
+				
 				pw.setColor(x, y, outputColor);
 			}
 		}
