@@ -14,6 +14,7 @@ import mars.geometry.Vector;
 import topic2_image_processing.filters.misc.Sobel;
 
 
+
 public class DemoSobel implements Drawing {
 	
 	@GadgetImageChooser

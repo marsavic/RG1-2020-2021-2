@@ -11,22 +11,23 @@ import mars.drawingx.gadgets.annotations.GadgetDouble;
 import mars.drawingx.gadgets.annotations.GadgetImageChooser;
 import mars.geometry.Vector;
 import topic2_image_processing.filters.BinaryFilter;
-import topic2_image_processing.filters.binary.ChromaKey;
+import topic2_image_processing.filters.binary.Overlap;
 
 
-public class DemoChromaKey implements Drawing {
+public class DemoOverlap implements Drawing {
 	
 	@GadgetImageChooser
 	Image originalImage1, originalImage2;
+	
+	@GadgetDouble(min = 0, max = 1)
+	Double opacity = 0.5;
 
-	@GadgetDouble(min = 0, max = 360)
-	double hue = 120;
 	
 	
 	@Override
 	public void init(View view) {
-		originalImage1 = new Image("images/meterologist.jpg");
-		originalImage2 = new Image("images/forecast.jpg");
+		originalImage1 = new Image("images/forecast.jpg");
+		originalImage2 = new Image("images/meterologist.jpg");
 	}
 	
 	
@@ -34,7 +35,7 @@ public class DemoChromaKey implements Drawing {
 	public void draw(View view) {
 		DrawingUtils.clear(view, Color.gray(0.2));
 
-		BinaryFilter filter = new ChromaKey(hue);
+		BinaryFilter filter = new Overlap(opacity);
 		try {
 			Image filteredImage = filter.process(originalImage1, originalImage2);
 			view.drawImageCentered(Vector.ZERO, filteredImage);
