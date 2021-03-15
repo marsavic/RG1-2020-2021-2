@@ -8,7 +8,6 @@ import topic2_image_processing.filters.DisplacementFilter;
  * Uvelicava gornji levi cosak slike koristeci zadati zoom faktor.
  */
 public class Zoom extends DisplacementFilter {
-	
 	final double k;
 	
 	
@@ -19,7 +18,8 @@ public class Zoom extends DisplacementFilter {
 	
 	@Override
 	public Vector source(Vector dst, Vector dim) {
-		return null;
+		// Delimo obe koordinate vektora sa k.
+		return dst.div(k);
 	}
 	
 }
