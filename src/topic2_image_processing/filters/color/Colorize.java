@@ -8,7 +8,6 @@ import topic2_image_processing.filters.ColorFilter;
  * postavljaju na vrednosti zadate u parametrima konstruktora.
  */
 public class Colorize extends ColorFilter {
-	
 	final double hue, saturation;
 	
 	
@@ -20,7 +19,12 @@ public class Colorize extends ColorFilter {
 
 	@Override
 	public Color processColor(Color input) {
-		return null;
+		return Color.hsb(
+				hue,
+				saturation,
+				input.getBrightness(),
+				input.getOpacity()
+				);
 	}
 	
 }

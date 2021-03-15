@@ -10,9 +10,11 @@ public class Invert extends ColorFilter {
 
 	@Override
 	public Color processColor(Color input) {
+		double r = input.getRed();
+		double g = input.getGreen();
+		double b = input.getBlue();
 
-
-		return null;
+		return new Color(1-r, 1-g, 1-b, input.getOpacity());
 	}
 
 }

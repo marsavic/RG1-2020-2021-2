@@ -7,7 +7,6 @@ import topic2_image_processing.filters.ColorFilter;
  * Umanjuje zasicenost bojama slike, prema parametru datom u konstruktoru filtera.
  */
 public class Desaturate extends ColorFilter {
-	
 	final double saturationFactor;
 	
 	
@@ -18,7 +17,12 @@ public class Desaturate extends ColorFilter {
 
 	@Override
 	public Color processColor(Color input) {
-		return null;
+		return Color.hsb(
+				input.getHue(),
+				input.getSaturation() * saturationFactor,
+				input.getBrightness(),
+				input.getOpacity()
+				);
 	}
 	
 }	
